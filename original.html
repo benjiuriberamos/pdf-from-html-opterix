@@ -1,0 +1,860 @@
+<html>
+
+<head>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Expires" content="0">
+	<style type="text/css">
+		
+		@media print {
+			@page {
+				size: A4 portrait;
+				margin: 0;
+				margin-top: -30px;
+				margin-bottom: none;
+				margin-left: none;
+				margin-right: none;
+			}
+
+			table.paging thead {
+				top: -35px
+			}
+
+			table.paging thead td,
+			table.paging tfoot td {
+				height: .5in;
+			}
+			.page-break {
+				display: block;
+				page-break-before: always;
+				page-break-inside: avoid;
+			}
+
+			.hides {
+				display: none;
+			}
+
+			.middle {
+				display: none;
+			}
+
+			header {
+				position: fixed;
+				top: 0;
+			}
+			footer {
+				position: fixed;
+				bottom: 10px;
+				width: auto;
+			}
+		}
+		
+		header {
+			width: 100%;
+			position: absolute;
+			top: 0;
+		}
+
+		footer {
+			width: 100%;
+			height: fit-content;
+		}
+
+		.hide {
+			display: none;
+		}
+
+		header,
+		footer {
+			position: relative;
+		}
+
+		tr {
+			page-break-after: auto
+		}
+
+		thead {
+			display: table-header-group
+		}
+
+		tfoot {
+			display: table-footer-group
+		}
+
+		table {
+			page-break-inside: auto;
+			width: 100%;
+			border-collapse: collapse;
+			font-size: 0.9em;
+			font-family: sans-serif;
+			min-width: 400px;
+			table-layout: fixed;
+		}
+
+
+		.innertable {
+			border: 1px solid black;
+		}
+
+		.show {
+			display: none;
+			background-color: #B4009E;
+			color: #ffffff;
+		}
+
+		.middle {
+			text-align: center;
+		}
+
+		.button {
+			display: inline-block;
+			border-radius: 4px;
+			border: none;
+			color: #FFFFFF;
+			text-align: center;
+			padding: 10px;
+			width: 100px;
+			transition: all 0.5s;
+			cursor: pointer;
+			margin: 5px;
+		}
+
+		.button span {
+			cursor: pointer;
+			display: inline-block;
+			position: relative;
+			transition: 0.5s;
+		}
+
+		.button span:after {
+			position: absolute;
+			opacity: 0;
+			top: 0;
+			right: -20px;
+			transition: 0.5s;
+		}
+
+		.button:hover span {
+			padding-right: 25px;
+		}
+
+		.button:hover span:after {
+			opacity: 1;
+			right: 0;
+		}
+
+		.text-left {
+			text-align: left;
+		}
+
+		.text-center {
+			text-align: center;
+		}
+
+		.text-right {
+			text-align: right;
+		}
+	</style>
+	<style>
+		.hide {
+			display: none;
+		}
+
+		.sumtotalhide {
+			display: none;
+		}
+
+		.innertable {
+			border: 1px solid black;
+		}
+
+		.table0 {
+			border: 1px solid black;
+			min-height: 200px;
+		}
+
+		.table0 tr {
+			height: 1px;
+		}
+
+		.table0 tr:nth-last-child(2) {
+			height: auto;
+			vertical-align: top;
+		}
+
+		.table0 tr:nth-last-child(1) {
+			display: none;
+		}
+
+		.table0 th {
+			background-color: #385494;
+			color: #ffffff;
+			font-weight: 700;
+			font-size: 1.2em;
+			text-align: center;
+		}
+
+		.table0 tr:last-child {
+			font-weight: bold;
+		}
+
+		.table0 th:nth-child(1) {
+			width: 5%;
+		}
+
+		.table0 th:nth-child(2) {
+			width: 30%;
+		}
+
+		.table0 th:nth-child(3) {
+			width: 15%;
+		}
+
+
+		.table1 {
+			border: 1px solid black;
+			min-height: 200px;
+		}
+
+		.table1 tr {
+			height: 1px;
+		}
+
+		.table1 tr:nth-last-child(2) {
+			height: auto;
+			vertical-align: top;
+		}
+
+		.table1 tr:nth-last-child(1) {
+			display: none;
+		}
+
+		.table1 th {
+			background-color: #385494;
+			color: #ffffff;
+			font-weight: 700;
+			font-size: 1.2em;
+			text-align: center;
+		}
+
+		.table1 tr:last-child {
+			font-weight: bold;
+		}
+
+		.table1 th:nth-child(1) {
+			width: 5%;
+		}
+
+		.table1 th:nth-child(2) {
+			width: 30%;
+		}
+
+		.table1 th:nth-child(3) {
+			width: 15%;
+		}
+
+		.show {
+			display: none;
+			background-color: #B4009E;
+			color: #ffffff;
+		}
+
+		td,
+		th {
+			padding: 2px 5px;
+			border: 1px solid #000;
+			word-wrap: break-word;
+		}
+
+		th {
+			border: 1px solid #000;
+			font-weight: 700;
+			word-wrap: break-word;
+		}
+
+		.highlight1 {
+			font-weight: 700;
+		}
+	</style>
+</head>
+
+<body style="padding:20px;margin:30px; font-size: 0.9em">
+	<div class="middle">
+		<input style="background-color: #4CAF50" class="button hides" type="button" value="Print" onclick="onprint();">
+		<input style="background-color: #f44336" class="button hides" type="button" value="Close" onclick="window.close();">
+		<input style="background-color: #24a0ed" class="button hides" type="button" value="Reload" onclick="location.reload();">
+	</div>
+	<header>
+	</header>
+	<table class="paging">
+		<thead>
+			<tr>
+				<td style="border: none;text-align: right;">
+					<img src="https://opterix.in/dbaire/photos/location/2024/Aug/dblogo-066.png" width="100px" height="auto">
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td style="border: none;">
+
+					<table style="table-layout:auto; margin-bottom: 5px;">
+						<tr>
+						<tr>
+							<td style="text-align: right; color: #232023; border: none;">
+								<p style="margin:unset">11-Sep-2024 </p>
+								<p style="margin:unset">DBA-SALE24-0006 </p>
+							</td>
+						</tr>
+					</table>
+					<p>Project Name:<b> IIIIT Hyderabad . </b></p>
+
+					<p>Dear Sir/Ma'am,
+					<p>
+
+					<p><b> Subject : Dunham-Bush Commercial offer for spares & repairing at IICA, Manesar </b></p>
+
+					<p>With reference to your mail, we are pleased to enclose herewith the techno commercial proposal
+						for your kind perusal as follows:</p>
+
+					<ol>
+						<li><b> Annexure-I </b> Commercial Proposal & INCO Terms</li>
+						<li><b> Annexure- II </b> DB Terms & Conditions of Sale</li>
+					</ol>
+
+					<p><br></p>
+
+					<p>Terms &amp; Conditions Dunham-Bush Group works with contractors, facility owners, operators,
+						designers and installers, to reduce costs &amp; raise productivity, by</p>
+					<p class="ql-indent-1">&#8226; Managing energy consumption through efficient equipment and
+						integrated controls.</p>
+					<p class="ql-indent-1">&#8226; Controlling maintenance expense.</p>
+					<p class="ql-indent-1">&#8226; Improving comfort &amp; Indoor Air Quality.</p>
+					<p class="ql-indent-1">&#8226; Ensuring reliability.</p>
+					<p class="ql-indent-1">&#8226; Providing building management systems and optimizing the HVAC
+						system design.</p>
+					<p class="ql-indent-1">&#8226; Addressing health, safety &amp; environmental issues.</p>
+					<p class="ql-indent-1">&#8226; Providing meaningful information &amp; remote monitoring
+						capability.</p>
+					<p class="ql-indent-1">&#8226; Reducing risk and complexity during project phase.</p>
+					<p><br></p>
+					<p>Dunham-Bush Group has a comprehensive range of energy efficient systems, quality HVAC products
+						and services coupled with application expertise. We welcome your additional enquiries.</p>
+					<p><br></p>
+					<p>Yours faithfully,</p>
+					<p>For <strong>DB-AIRE INDIA PVT LTD.</strong></p>
+					<p><br></p>
+					<p><strong>Point of contact: </strong></p>
+					<table class="innertable">
+						<tr>
+							<td>Service Sales</td>
+							<td>Retrofit</td>
+							<td>Regional Manager</td>
+							<td>Service Head</td>
+						</tr>
+						<tr>
+							<td>+91 965033 7107</td>
+							<td>+91 9971 602 603</td>
+							<td>+91 988800 2330</td>
+							<td>+91 981819 7738</td>
+						</tr>
+					</table>
+
+					<p style="page-break-before: always;text-align: center; font-weight:700"><u>COMMERCIAL OFFER</u></p>
+
+					<p style="font-weight:700">SPARES</p>
+					<div class="hide">Groupwise Items</div>
+					<table class="table table0">
+						<tr>
+							<th class='text-left'>S/N</th>
+							<th id='description0' class='text-left description0'> <input type='checkbox'
+									class='column-checkbox hides' data-column='description0' /> ITEM </th>
+							<th id='quote_qty1' class='text-right quote_qty1'> <input type='checkbox'
+									class='column-checkbox hides' data-column='quote_qty1' /> QTY </th>
+							<th id='C12' class='text-center C12'> <input type='checkbox' class=' column-checkbox hides'
+									data-column='C12' /> UNIT </th>
+							<th id='disc_rate3' class='text-right disc_rate3'> <input type='checkbox'
+									class='column-checkbox hides' data-column='disc_rate3' /> RATE </th>
+							<th id='price4' class='text-right price4'> <input type='checkbox'
+									class='column-checkbox hides' data-column='price4' /> AMOUNT </th>
+						</tr>
+						<tr>
+							<td class='text-left'>1</td>
+							<td class='text-left highlight1'> Chiller 1</td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+						</tr>
+						<tr>
+							<td class='text-right'> </td>
+							<td class='text-left highlight2'> Parts required for the chillar 1 assembly</td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+						</tr>
+						<tr>
+							<td class='text-left'> 1.1 </td>
+							<td class='text-left description0'>34tw3etwet</td>
+							<td class='text-right quote_qty1'>4.00</td>
+							<td class='text-left C12'></td>
+							<td class='text-right disc_rate3'>55,000.00</td>
+							<td class='text-right price4'>2,20,000.00</td>
+						</tr>
+						<tr class='sumtotalhide'>
+							<td class='text-left'>Sub Total</td>
+							<td class='text-right description0'> </td>
+							<td class='text-right quote_qty1'> </td>
+							<td class='text-right C12'> </td>
+							<td class='text-right disc_rate3'> </td>
+							<td class='text-right price4'>2,20,000.00</td>
+						</tr>
+						<tr>
+							<td class='text-left'>2</td>
+							<td class='text-left highlight1'> Chiller 2</td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+						</tr>
+						<tr>
+							<td class='text-right'> </td>
+							<td class='text-left highlight2'> Chiller 2 items</td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+						</tr>
+						<tr>
+							<td class='text-left'> 2.1 </td>
+							<td class='text-left description0'>34tw3etwet</td>
+							<td class='text-right quote_qty1'>4.00</td>
+							<td class='text-left C12'></td>
+							<td class='text-right disc_rate3'>55,000.00</td>
+							<td class='text-right price4'>2,20,000.00</td>
+						</tr>
+						<tr class='sumtotalhide'>
+							<td class='text-left'>Sub Total</td>
+							<td class='text-right description0'> </td>
+							<td class='text-right quote_qty1'> </td>
+							<td class='text-right C12'> </td>
+							<td class='text-right disc_rate3'> </td>
+							<td class='text-right price4'>2,20,000.00</td>
+						</tr>
+					</table>
+					<table class="innertable">
+						<tr>
+							<td style="text-align: right; width: 80%">Grand Total (Basic) </td>
+							<td style="text-align: right"> 4,40,000.00 </td>
+						</tr>
+						<tr>
+							<td style="text-align: right; width: 80%">GST Amount @ 18% </td>
+							<td style="text-align: right"> 1,23,200.00 </td>
+						</tr>
+						<tr>
+							<td style="text-align: right; width: 80%">Grand Total Inc. GST </td>
+							<td style="text-align: right"> 5,63,200.00 </td>
+						</tr>
+					</table>
+					<br>
+					<p style="font-weight:700">JOB</p>
+					<div class="hide">Groupwise Job</div>
+					<table class="table table1">
+						<tr>
+							<th class='text-left'>S/N</th>
+							<th id='description0' class='text-left description0'> <input type='checkbox'
+									class='column-checkbox hides' data-column='description0' /> ITEM </th>
+							<th id='quote_qty1' class='text-right quote_qty1'> <input type='checkbox'
+									class='column-checkbox hides' data-column='quote_qty1' /> QTY </th>
+							<th id='C12' class='text-center C12'> <input type='checkbox' class=' column-checkbox hides'
+									data-column='C12' /> UNIT </th>
+							<th id='disc_rate3' class='text-right disc_rate3'> <input type='checkbox'
+									class='column-checkbox hides' data-column='disc_rate3' /> RATE </th>
+							<th id='price4' class='text-right price4'> <input type='checkbox'
+									class='column-checkbox hides' data-column='price4' /> AMOUNT </th>
+						</tr>
+						<tr>
+							<td class='text-left'>1</td>
+							<td class='text-left highlight1'> Chiller 1</td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+						</tr>
+						<tr>
+							<td class='text-right'> </td>
+							<td class='text-left highlight2'> Parts required for the chillar 1 assembly</td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+						</tr>
+						<tr>
+							<td class='text-left'> 1.1 </td>
+							<td class='text-left description0'>Big Chilling machine</td>
+							<td class='text-right quote_qty1'>3.00</td>
+							<td class='text-left C12'></td>
+							<td class='text-right disc_rate3'>45,00,000.00</td>
+							<td class='text-right price4'>1,35,00,000.00</td>
+						</tr>
+						<tr>
+							<td class='text-left'> 1.2 </td>
+							<td class='text-left description0'>Eddy current testing of condenser</td>
+							<td class='text-right quote_qty1'>10.00</td>
+							<td class='text-left C12'></td>
+							<td class='text-right disc_rate3'>20,000.00</td>
+							<td class='text-right price4'>2,00,000.00</td>
+						</tr>
+						<tr>
+							<td class='text-left'> 1.3 </td>
+							<td class='text-left description0'>Descaling of condenser </td>
+							<td class='text-right quote_qty1'>10.00</td>
+							<td class='text-left C12'></td>
+							<td class='text-right disc_rate3'>20,000.00</td>
+							<td class='text-right price4'>2,00,000.00</td>
+						</tr>
+						<tr class='sumtotalhide'>
+							<td class='text-left'>Sub Total</td>
+							<td class='text-right description0'> </td>
+							<td class='text-right quote_qty1'> </td>
+							<td class='text-right C12'> </td>
+							<td class='text-right disc_rate3'> </td>
+							<td class='text-right price4'>1,39,00,000.00</td>
+						</tr>
+						<tr>
+							<td class='text-left'>2</td>
+							<td class='text-left highlight1'> Chiller 2</td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+						</tr>
+						<tr>
+							<td class='text-right'> </td>
+							<td class='text-left highlight2'> Chiller 2 items</td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+							<td class='text-right'> </td>
+						</tr>
+						<tr>
+							<td class='text-left'> 2.1 </td>
+							<td class='text-left description0'>Big Chilling machine</td>
+							<td class='text-right quote_qty1'>3.00</td>
+							<td class='text-left C12'></td>
+							<td class='text-right disc_rate3'>4,50,000.00</td>
+							<td class='text-right price4'>13,50,000.00</td>
+						</tr>
+						<tr>
+							<td class='text-left'> 2.2 </td>
+							<td class='text-left description0'>Eddy current testing of condenser</td>
+							<td class='text-right quote_qty1'>20.00</td>
+							<td class='text-left C12'></td>
+							<td class='text-right disc_rate3'>20,000.00</td>
+							<td class='text-right price4'>4,00,000.00</td>
+						</tr>
+						<tr>
+							<td class='text-left'> 2.3 </td>
+							<td class='text-left description0'>Descaling of condenser </td>
+							<td class='text-right quote_qty1'>20.00</td>
+							<td class='text-left C12'></td>
+							<td class='text-right disc_rate3'>20,000.00</td>
+							<td class='text-right price4'>4,00,000.00</td>
+						</tr>
+						<tr class='sumtotalhide'>
+							<td class='text-left'>Sub Total</td>
+							<td class='text-right description0'> </td>
+							<td class='text-right quote_qty1'> </td>
+							<td class='text-right C12'> </td>
+							<td class='text-right disc_rate3'> </td>
+							<td class='text-right price4'>21,50,000.00</td>
+						</tr>
+					</table>
+					<table class="innertable">
+						<tr>
+							<td style="text-align: right; width: 80%">Grand Total (Basic) </td>
+							<td style="text-align: right"> 1,60,50,000.00 </td>
+						</tr>
+						<tr>
+							<td style="text-align: right; width: 80%">GST Amount @ 18% </td>
+							<td style="text-align: right"> 26,73,000.00 </td>
+						</tr>
+						<tr>
+							<td style="text-align: right; width: 80%">Grand Total Inc. GST </td>
+							<td style="text-align: right"> 1,87,23,000.00 </td>
+						</tr>
+					</table>
+					<br>
+					<p style="page-break-before: always;text-align: center; font-weight:700">
+						<p>
+							<strong><u>COMMERCIAL TERMS &amp; CONDITIONS</u></strong>
+						</p>
+						<p class="ql-indent-1">&#8226;&nbsp;<strong>Validity of offer:&nbsp;</strong>30 days</p>
+						<p class="ql-indent-1">&#8226;&nbsp;<strong>Delivery time:</strong>&nbsp;12-16 Weeks from the date
+							of confirmed Order</p>
+						<p class="ql-indent-1">&#8226;&nbsp;<strong>Price Validity:</strong>&nbsp;Price is valid for 1
+							months after order confirmation</p>
+						<p class="ql-indent-1">&#8226;&nbsp;<strong>Payment terms:</strong>&nbsp;100% Advance against PI.
+						</p>
+						<p class="ql-indent-1">&#8226; Please note that the units quoted are only for Supply of the units
+							designed as per the Dunham-Bush standards.</p>
+						<p><strong>Indian Supply and Services Order (Commissioning Order) on M/s DB-Aire India Pvt Ltd,
+							Gurgaon.</strong></p>
+						<p><br></p>
+						<p>Exclusions:</p>
+						<ol>
+							<li>Installation, piping and electrical cabling</li>
+							<li>Any type of Civil / Structural works required at jobsite</li>
+							<li>Price is exclusive of Octroi and Entry Tax, if any applicable.</li>
+							<li>Any other item or work not specifically mentioned in our offer as above</li>
+						</ol>
+						<p>
+						<br>
+					</p>
+					<p style="page-break-before: always;">Standard Terms of Sale</p>
+					<p class="terms">Orders for the supply or sale of products or equipment including but not limited to
+						spare parts and original equipment manufacturer products ("Products") to be provided
+						by Dunham-Bush Holding Berhad, or its direct or indirect subsidiaries (in each case
+						as applicable referred to herein as “Dunham-Bush”) to its customers (each a "Buyer”)
+						are subject to acceptance by Dunham-Bush, and any orders so accepted will be
+						governed by the terms and conditions stated herein and any additional terms proposed
+						or agreed to in writing by an authorized representative of Dunham-Bush (these terms
+						and conditions and any such additional terms collectively referred to herein as the
+						"Agreement'). Any additions to or modifications of these terms and conditions, or any
+						terms and conditions contained in Buyer’s order inconsistent herewith, shall not bind
+						Dunham-Bush unless accepted in writing by an authorized representative of DunhamBush.
+						<ol>
+							<li> Price & Routing. Unless otherwise stated, prices stated a) are ex-factory and
+								delivery/shipment is to be taken by the Buyer at Buyer’s own expense, and b) do not
+								include any duties, surtax, sales tax, excise duties and/or any kind of taxes. Where
+								prices include freight, Dunham-Bush determines the routing. If special routing is
+								requested, a charge will be made for the difference between such routing costs and
+								normal minimum freight charges to the same point.
+							</li>
+							<li> Price adjustments. Up to the time of formal order acknowledgment by DunhamBush, all prices
+								are subject to change without notice. Acknowledged sales price(s) of
+								the Products are subject to adjustment to reflect increases in Dunham-Bush’s costs in
+								effect at the time of shipment. This provision includes changes in the rate of exchange,
+								freight, insurance, duties, taxes, materials, components parts, and labor and factors
+								resulting from any changes in Government policy and factors beyond the control of
+								Dunham-Bush. If actual shipment goes beyond six (6) months from date of order
+								acceptance, sales price(s) are subject to re-negotiation. Additionally, the right is
+								reserved to correct any stenographic or clerical errors, and Dunham-Bush assumes
+								no responsibility beyond that usual in the course of business, except as defined in
+								detail.
+							</li>
+							<li> Payment terms. Irrevocable confirmed letter of credit at sight in full order value
+								should be issued to Dunham-Bush one (1) month prior to scheduled delivery date, or
+								as notified by the Dunham-Bush. These terms apply to partial as well as complete
+								shipments. A service charge at the rate of 1.5% per month (18% per annum) or the
+								maximum rate allowed by law, whichever is less, will be made on past due accounts.
+								In the event Dunham-Bush institutes legal proceedings for collection of past due
+								accounts, the Buyer shall pay all costs of collection including reasonable attorney’s
+								fees. Dunham-Bush reserves the right to ship C.O.D. or refuse shipment or delivery
+								of the Products referred to herein, or any part thereof, in the event that in its sole
+								discretion decides that the outstanding debts of the Buyer exceed reasonable credit
+								allowances. Dunham-Bush reserves the right to sell undelivered Products if the Buyer
+								does not take delivery within thirty (30) days of requested date. Dunham-Bush
+								reserves the right to cancel or suspend all express warranties stated hereof if the
+								related payment is overdue.
+							</li>
+							<li> Order confirmation. Dunham-Bush shall not be deemed to have accepted any order
+								unless and until written confirmation of the order has been provided to the Buyer.
+							</li>
+							<li> Delivery. Dunham-Bush will endeavor to ship by scheduled delivery date, but
+								failure to do so for any cause whatever will not give Buyer right to cancel or hold
+								Dunham-Bush liable for any damages resulting from the failure to deliver within the
+								time stated. All finished Products are to be collected by the Buyer within 21 days upon
+								notification by Dunham-Bush unless otherwise arranged in writing by Dunham-Bush.
+								If the said Products are not collected within the above stipulated period, Dunham-Bush
+								shall at liberty nonetheless to issue an invoice for the Products kept in the
+								factory/warehouse and the invoice so issued shall be payable in accordance with
+								Dunham-Bush terms of payment. If the said Products are still not collected after one
+								(1) month, Dunham-Bush reserves the right to impose a storage charge of 2% per
+								month, or part thereof, of the value of the Products until collected. Dunham-Bush also
+								reserves the right to dispose of the said Products to other parties and the Buyer will
+								be notified accordingly. In this event, the revised delivery period shall again commence
+								upon the Buyer’s confirmation to take delivery. Unless payment are fully settled, if after
+								ninety (90) days, the said Products remain uncollected or cannot be shipped, the
+								order(s) shall be treated as cancelled and the cancellation charges under Clause 6
+								below shall apply.
+							</li>
+							<li> Cancellation. Orders of Products maybe canceled only with written consent of
+								Dunham-Bush and the following cancellation charges payable by the Buyer shall
+								apply:
+								a) 10% of the sale price or US$200, whichever is the greater, if cancellation is
+								made within 14 days from after acceptance of order,
+								b) 30% of the sale price if sheet metal are fabricated and/or any component parts
+								is purchased by Dunham-Bush,
+								c) 50% of the sale price if Products have been completed for standard Products,
+								and
+								d) 100% of the sale price if Products have been completed for custom Products.
+								In the event of any delay delivery as informed by Dunham-Bush within 14 days of
+								acceptance of order, it is agreed that at the option of the Buyer the order may be
+								cancelled at no charge.
+							</li>
+							<li class="server-page-break"> Additional Taxes. In case of the imposition of any additional duty, tax, or other
+								governmental charge upon raw materials entering into production of the Products
+								represented by the invoice, and order acknowledgment, or upon or measured by the
+								production, sale or shipment of said Products by any authorities, which would be
+								applicable to this sale, then the contract price may be increased by the amount of such
+								additional cost or expense to Dunham-Bush, which is caused thereby. Unless
+								specifically exempted, all sales, use and any other tax will be invoiced to the Buyer in
+								addition to the price of the equipment and are to be paid by the Buyer.
+							</li>
+							<li> Title and Risk of Loss. When Products are sold (a) F.O.B. title and risk of loss shall
+								pass to the Buyer upon delivery of the Products by Dunham-Bush to the carrier for
+								shipment, and (b) ex-factory title and risk of loss shall pass to the Buyer immediately
+								upon the Products being placed on board transport vehicle. All Products are shipped
+								at Buyer’s risk and are shipped F.O.B. shipping point. If Products are received in
+								damaged condition, Buyer should contact transportation agent and immediately file
+								claim.
+								Rev 18 July 2019
+								Standard Terms of Sale
+							</li>
+							<li> Shortages. No claims for shortages will be considered unless same are made in
+								writing to Dunham-Bush within 10 days of receipt of shipment.
+							</li>
+							<li> Specifications. Dunham-Bush reserves the right to change specifications as
+								conditions warrant.
+							</li>
+							<li> Limited Warranty. Dunham-Bush agrees that the Products manufactured by
+								Dunham-Bush will be free from defects in material and workmanship under normal use
+								and service within twelve (12) months from the date of the start-up or installation and
+								commissioning, but not later than eighteen (18) months from date of shipment from
+								factory to the original purchaser or twenty-four (24) months from the date of
+								manufacture, whichever date may first occur. Dunham-Bush`s obligation hereunder is
+								limited solely to repair or replacement at Dunham-Bush`s option, at Dunham-Bush
+								factories, of any part or parts thereof which shall be returned to Dunham-Bush with
+								transportation charges prepaid by Buyer, which Dunham-Bush`s examination shall
+								disclose to Dunham-Bush`s satisfaction to have been defective. Warranty on all
+								chillers is conditional on the equipment being commissioned and serviced by DunhamBush
+								authorized representative. Exclusions from this warranty include damage or
+								failure arising from: wear and tear; corrosion, erosion, or deterioration; Buyer's failure
+								to follow Dunham-Bush-provided installation and maintenance instructions;
+								modifications made by others to Dunham-Bush’s equipment; pressures in excess of
+								stated limits; disasters such as fire, flood, wind, and lightning; damage during
+								shipment; or any other abuse or misuse by the Buyer. Dunham-Bush shall not be
+								obligated to pay for the cost of lost refrigerant. Dunham-Bush shall not be responsible
+								for the performance or efficiency of the air-conditioning system if the said entire system
+								is not designed and installed by Dunham-Bush. On parts not of Dunham-Bush`s
+								manufacture, such as motors, controls, etc. Dunham-Bush extends only the same
+								warranties given to Dunham-Bush by the suppliers. Nothing in the above warranty
+								provisions, however, shall impose any liability or obligation of any type, nature or
+								description upon Dunham-Bush if Dunham-Bush has not received payment in full for
+								the Products in question. This warranty shall be read together with Dunham-Bush
+								Warranty Certificate issued to the Buyer, whenever it is applicable.
+							</li>
+							<li> Warranty procedures. Warranty claim together with detail and supporting
+								documents proving the claim must be submitted to Dunham-Bush within 30 days of
+								the occurrence of the failure or detection of the defect within the warranty period. Any
+								claim submitted after the 30 days period is void and is out of warranty.
+							</li>
+							<li> Returns. Permission to return material plus shipping instructions and returned
+								Products tags must be secured from the factory offices of Dunham-Bush before
+								returning any material. All returns must be unused, in new condition, and of standard
+								manufacture. They are subject to a handling charge as stated by Dunham-Bush. All
+								authorized return shipments must be made as directed by us and with transportation
+								charge prepaid to point of origin of our shipment unless instructed otherwise. Shipment
+								of material returned without authorization or improperly tagged or not prepaid, are
+								subject to refusal and immediate return to shipper. Products which are obsolete or
+								made to special order are not returnable.
+							</li>
+							<li> Limitation of Liability. In no event shall Dunham-Bush be liable for any indirect,
+								incidental or consequential loss, any loss arising from business interruption, loss of
+								profits, loss of revenue, loss of use of any property or capital, loss of anticipated
+								savings or loss of data. Liability of Dunham-Bush in respect of any purchase order or
+								otherwise under these terms and conditions shall in no case exceed the contract price
+								of the specific Products that give rise to the claim. These exclusions and limitations
+								apply regardless of how the loss or damage may be caused and against any theory of
+								liability, whether based in contract, tort, indemnity or otherwise. These exclusions and
+								limitations apply to the maximum extent allowed by applicable law.
+							</li>
+							<li> Force Majeure. If Dunham-Bush fails to perform its obligations because of
+								strikes, lockouts, labor disputes, embargoes, acts of God, inability to obtain labor or
+								materials or reasonable substitutes for labor or materials, governmental restrictions,
+								governmental regulations, governmental controls, judicial orders, enemy or hostile
+								governmental action, civil commotion, fire or other casualty, or other causes beyond
+								the reasonable control of Dunham-Bush, then Dunham-Bush’s performance shall be
+								excused for a period equal to the period of such cause for failure to perform, plus a
+								reasonable time to complete manufacture and shipment of the Products.
+							</li>
+							<li class="server-page-break"> Applicable Law and Forum. This Agreement, and resolution of any dispute
+								arising from the relationship between the parties to this Agreement, shall be governed
+								by the laws of India, excluding any laws that direct the application of another
+								jurisdiction’s laws.
+							</li>
+							<li> Dispute Resolution. Any dispute, controversy or claim arising out of or relating
+								to this Agreement, or the breach, termination or invalidity thereof, shall be resolved by
+								the courts of the country or by arbitration in accordance with Delhi International
+								Arbitration Centre (Arbitration Proceedings) rules / Mumbai Centre of Arbitration rules
+								for the time being in force. The number of arbitrators shall be three. The place of
+								arbitration shall be Delhi/ Mumbai, India. The language to be used in the arbitration
+								proceedings shall be English.
+							</li>
+							<li> Entire Agreement. These Standard Terms of Sale, together with the terms of the
+								Purchase Order, constitute the final, complete, and exclusive statement of the terms
+								of the Agreement between the parties pertaining to the purchase and sale of the
+								Products, and supersedes all prior and contemporaneous understandings or
+								agreements of the parties. No party has been induced to enter into this Agreement by,
+								nor is any customer relying on, any representation or warranty, including statements
+								made by salespersons, outside those expressly set forth in this Agreement. No
+								employee of Dunham-Bush or any other party is authorized to make any warranty in
+								addition to those made in this Agreement.
+							</li>
+							<li> Modification. This Agreement may be supplemented, amended, or modified only
+								by the mutual agreement of the parties. No supplement, amendment, or modification
+								of this Agreement shall be binding unless it is in writing and signed by Dunham-Bush
+								and Buyer.</li>
+						</ol>
+					</p>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td style="border: none;"></td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<footer>
+		<br>
+		<p style="text-align: left; margin:unset;">DB-AIRE INDIA PVT LTD &#149; UNIT NO.804, 805A, 805B, 8TH FLOOR SPAZE
+			PLATINUM TOWER,SOHNA ROAD, , GURGAON, Haryana, India - 122001 </p>
+		<p style="text-align: left; margin:unset;"> EMAIL: dbindia@dunham-bush.com &#149; PHONE: </p>
+	</footer>
+
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+	</script>
+	<script type="text/javascript">
+		var doc = new jsPDF();
+		var specialElementHandlers = { "#editor": function (element, renderer) { return true; } };
+		$(document).ready(function () {
+			$("#btn").click(function () {
+				doc.fromHTML($("#content").html(), 15, 15, { "width": 170, "elementHandlers": specialElementHandlers });
+				doc.save("sample-content.pdf");
+			});
+		}); 
+	</script>
+	<script>
+		function onprint() {
+			// Event listener for checkbox changes
+			document.querySelectorAll(".column-checkbox").forEach(checkbox => {
+				if (checkbox.checked) {
+					const columnIndex = checkbox.dataset.column;
+					const nodeList = document.querySelectorAll("." + columnIndex);
+					for (let i = 0; i < nodeList.length; i++) {
+						nodeList[i].style.display = "none";
+					}
+
+				}
+			});
+			window.print();
+		}
+	</script>
+</body>
+</html>
