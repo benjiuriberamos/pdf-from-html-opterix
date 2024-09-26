@@ -6,11 +6,28 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="Expires" content="0">
 	<style type="text/css">
-		
+		@page {
+			size: A4 portrait;
+			margin-top: 30px;
+			margin-bottom: none;
+			margin-left: none;
+			margin-right: none;
+		}
+
 		@media print {
-			@page {
-				size: A4 portrait;
-				margin: 0;
+			
+			header, footer {
+				position: fixed;
+			}
+
+			.page-break  { 
+				display:block; 
+				page-break-before:always; 
+			
+			}
+
+			.hides {
+				display: none;
 			}
 
 			table.paging thead {
@@ -27,23 +44,10 @@
 				page-break-inside: avoid;
 			}
 
-			.hides {
-				display: none;
-			}
-
 			.middle {
 				display: none;
 			}
 
-			header {
-				position: fixed;
-				top: 0;
-			}
-			footer {
-				position: fixed;
-				bottom: 10px;
-				width: auto;
-			}
 		}
 		
 		header {
