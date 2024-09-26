@@ -1,0 +1,506 @@
+<html>
+
+	<head>
+		<style>
+			.table0 {
+				border: 1px solid black;
+				min-height: 100px;
+			}
+
+			.table0 tr {
+				height: 1px;
+			}
+
+			.table0 tr:nth-last-child(2) {
+				height: auto;
+				vertical-align: top;
+			}
+
+			.table0 tr:nth-last-child(1) {
+				display: none;
+			}
+
+
+			.table0 tr:last-child {
+				font-weight: bold;
+				display: none;
+			}
+
+			.table0 th:nth-child(1) {
+				width: 5%;
+			}
+
+			.table0 th:nth-child(3) {
+				text-align: center;
+			}
+
+			.table0 th:nth-child(4) {
+				text-align: left;
+			}
+
+
+			.table0 td:nth-child(3) {
+				text-align: center;
+			}
+
+			.table0 td:nth-child(4) {
+				text-align: left;
+			}
+
+			.table1 {
+				border: 1px solid black;
+			}
+
+			.table1 tr:last-child {
+				font-weight: bold;
+				display: none;
+			}
+
+			.table1 th:nth-child(1) {
+				display: none;
+			}
+
+			.table1 th:nth-child(4) {
+				display: none;
+			}
+
+			.table1 td:nth-child(1) {
+				display: none;
+			}
+
+			.table1 th:nth-child(3) {
+				text-align: center;
+			}
+
+			.table1 td:nth-child(3) {
+				text-align: center;
+			}
+
+			.table1 td:nth-child(4) {
+				display: none;
+			}
+
+			.table1 {
+				min-width: 100px;
+				min-height: 150px;
+			}
+
+			.hide {
+				display: none;
+			}
+
+			.show {
+				display: none;
+				background-color: #B4009E;
+				color: #ffffff;
+			}
+
+			td,
+			th {
+				padding: 2px 5px;
+				border-right: 1px solid #000;
+			}
+
+			th {
+				border: 1px solid #000;
+			}
+		</style>
+	</head>
+
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+	</script>
+	<script type="text/javascript">
+		var doc = new jsPDF();
+		var specialElementHandlers = { "#editor": function (element, renderer) { return true; } };
+		$(document).ready(function () {
+			$("#btn").click(function () {
+				doc.fromHTML($("#content").html(), 15, 15, { "width": 170, "elementHandlers": specialElementHandlers });
+				doc.save("sample-content.pdf");
+			});
+		}); </script>
+
+	<style type="text/css">
+		@page {
+			size: A4 portrait;
+			margin: 0;
+		}
+
+		@media print {
+
+			table.paging thead td,
+			table.paging tfoot td {
+				height: .5in;
+			}
+		}
+
+		header {
+			width: 100%;
+		}
+
+		footer {
+			width: 100%;
+			height: fit-content;
+		}
+
+
+		header {
+			position: absolute;
+			top: 0;
+		}
+
+		@media print {
+
+			header,
+			footer {
+				position: fixed;
+			}
+		}
+
+		.hide {
+			display: none;
+		}
+
+		@page {
+			margin-top: 30px;
+			margin-bottom: none;
+			margin-left: none;
+			margin-right: none;
+		}
+
+		@media print {
+			.page-break {
+				display: block;
+				page-break-before: always;
+			}
+		}
+
+		table {
+			page-break-inside: auto
+		}
+
+		tr {
+			page-break-after: auto
+		}
+
+		thead {
+			display: table-header-group
+		}
+
+		tfoot {
+			display: table-footer-group
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			font-size: 0.9em;
+			font-family: sans-serif;
+			min-width: 400px;
+			table-layout: fixed;
+		}
+
+		.innertable {
+			border: 1px solid black;
+		}
+
+		.show {
+			display: none;
+			background-color: #B4009E;
+			color: #ffffff;
+		}
+
+		.middle {
+			text-align: center;
+		}
+
+		.button {
+			display: inline-block;
+			border-radius: 4px;
+			border: none;
+			color: #FFFFFF;
+			text-align: center;
+			padding: 10px;
+			width: 100px;
+			transition: all 0.5s;
+			cursor: pointer;
+			margin: 5px;
+		}
+
+		.button span {
+			cursor: pointer;
+			display: inline-block;
+			position: relative;
+			transition: 0.5s;
+		}
+
+		.button span:after {
+			position: absolute;
+			opacity: 0;
+			top: 0;
+			right: -20px;
+			transition: 0.5s;
+		}
+
+		.button:hover span {
+			padding-right: 25px;
+		}
+
+		.button:hover span:after {
+			opacity: 1;
+			right: 0;
+		}
+
+		@media print {
+			.hides {
+				display: none;
+			}
+		}
+
+		.text-left {
+			text-align: left;
+		}
+
+		.text-center {
+			text-align: center;
+		}
+
+		.text-right {
+			text-align: right;
+		}
+	</style>
+
+	<script>
+
+		function onprint() {
+			// Event listener for checkbox changes
+			document.querySelectorAll(".column-checkbox").forEach(checkbox => {
+				if (checkbox.checked) {
+					const columnIndex = checkbox.dataset.column;
+					const nodeList = document.querySelectorAll("." + columnIndex);
+					for (let i = 0; i < nodeList.length; i++) {
+						nodeList[i].style.display = "none";
+					}
+
+				}
+			});
+			window.print();
+		}
+
+	</script>
+	<div class="middle">
+
+
+		<input style="background-color: #4CAF50" class="button hides" type="button" value="Print" onclick="onprint();">
+		<input style="background-color: #f44336" class="button hides" type="button" value="Close"
+			onclick="window.close();">
+		<input style="background-color: #24a0ed" class="button hides" type="button" value="Reload"
+			onclick="location.reload();">
+	</div>
+
+	<body style="padding:20px;margin:30px; font-size: 0.9em">
+		<header>Service Report: COOL-26092024107 </header>
+		<table class=paging>
+			<thead style="display: none">
+				<tr>
+					<td style="border-right: none;">&nbsp;</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="border-right: none;">
+
+						<table style="table-layout:auto">
+							<tr>
+								<td style="border: none;width:30%;"><img
+										src="https://opterix.in/coolx/photos/location/2024/Mar/OpteriXlogofull-62513.png"
+										width="100%" height="auto"></td>
+								<td style="border: none; width: 70%;">
+									<p style="text-align:right; font-size:1em; font-weight: 700; margin:0px;">COOLX
+										AIRCON </p>
+									<p style="text-align:right; margin:0px;"> D.No.26-1-75, Main Road, Nagarampalem,
+										Guntur-522004, </p>
+									<p style="text-align:right; margin:0px;"> abcelec@a.com <span
+											style="font-size:1.5em">&#149;</span> Ph:9248061555, 0863-2233606 </p>
+								</td>
+							</tr>
+						</table>
+						<table style="table-layout:auto;">
+							<tr>
+								<td style="border: none">DATE : 26-Sep-2024 </td>
+								<td rowspan="2" style="border: none; text-align:center;font-weight: 700">SERVICE
+									COMPLETION CERTIFICATE</td>
+								<td style="text-align: right; border: none;">REF: COOL-26092024107 </td>
+							</tr>
+						</table>
+
+						<table class="innertable">
+							<tr>
+								<td>Complaint No</td>
+								<td>Scheduled Work Date</td>
+								<td>Registered By</td>
+								<td>Service Engineer</td>
+							</tr>
+							<tr>
+								<td>COOL-26092024107 </td>
+								<td>26-Sep-2024 </td>
+								<td>Ravi Nistala </td>
+								<td>Aftab Khan </td>
+							</tr>
+							<tr>
+								<td colspan="2" style="border-top: 1px solid black;">Customer Name : Praveen Verma </td>
+								<td colspan="2" style="border-top: 1px solid black;">Tel : </td>
+							</tr>
+							<tr>
+								<td colspan="2">Address : Jaipur </td>
+								<td colspan="2">Mobile : 000 </td>
+							</tr>
+							<tr>
+								<td colspan="2"> </td>
+								<td colspan="2">Email : unkown </td>
+							</tr>
+						</table>
+						<table class="innertable">
+							<tr>
+								<td>Service Date : 26-Sep-2024 &#149; Start Time : 07:52:40 &#149; End Time : 07:54
+								</td>
+							</tr>
+						</table>
+						<div class="hide">Task Detail</div>
+						<table class="table table0">
+							<tr>
+								<th class='text-left'>S/N</th>
+								<th id='C10' class='text-center C10'> <input type='checkbox'
+										class=' column-checkbox hides' data-column='C10' /> Model </th>
+								<th id='machine1' class='text-right machine1'> <input type='checkbox'
+										class='column-checkbox hides' data-column='machine1' /> Serial No</th>
+								<th id='action_taken2' class='text-left action_taken2'> <input type='checkbox'
+										class='column-checkbox hides' data-column='action_taken2' /> Action Taken </th>
+								<th id='remarks3' class='text-center remarks3'> <input type='checkbox'
+										class='column-checkbox hides' data-column='remarks3' /> Remarks </th>
+							</tr>
+							<tr>
+								<td class='text-left'> 1 </td>
+								<td class='text-right C10'>2506691</td>
+								<td class='text-left machine1'>4444AA</td>
+								<td class='text-left action_taken2'>Install</td>
+								<td class='text-center remarks3'></td>
+							</tr>
+							<tr>
+								<td class='text-left'> 2 </td>
+								<td class='text-right C10'>2506672</td>
+								<td class='text-right machine1'>55556</td>
+								<td class='text-left action_taken2'>Install</td>
+								<td class='text-center remarks3'></td>
+							</tr>
+							<tr class='sumtotalhide'>
+								<td class='text-left'>Sub Total</td>
+								<td class='text-right C10'> </td>
+								<td class='text-right machine1'> </td>
+								<td class='text-right action_taken2'> </td>
+								<td class='text-right remarks3'> </td>
+							</tr>
+						</table>
+						<table class="" style="width:100%; border-collapse: collapse;">
+							<tr>
+								<td style="vertical-align: top;border:none">
+									<div class="hide">Checkpoints -copy</div>
+									<table class="table table1">
+										<tr>
+											<th class='text-left'>S/N</th>
+											<th id='cp0' class='text-left cp0'> <input type='checkbox'
+													class='column-checkbox hides' data-column='cp0' /> CHECKPOINT </th>
+											<th id='status1' class='text-right status1'> <input type='checkbox'
+													class='column-checkbox hides' data-column='status1' /> STATUS </th>
+											<th id='cptype2' class='text-left cptype2'> <input type='checkbox'
+													class='column-checkbox hides' data-column='cptype2' /> cptype </th>
+										</tr>
+										<tr>
+											<td class='text-left'> 1 </td>
+											<td class='text-left cp0'>Voltage.</td>
+											<td class='text-right status1'>Yes</td>
+											<td class='text-left cptype2'>RMS</td>
+										</tr>
+										<tr>
+											<td class='text-left'> 2 </td>
+											<td class='text-left cp0'>Amperes.</td>
+											<td class='text-right status1'>Yes</td>
+											<td class='text-left cptype2'>RMS</td>
+										</tr>
+										<tr>
+											<td class='text-left'> 3 </td>
+											<td class='text-left cp0'>Room Temperature.</td>
+											<td class='text-right status1'>Yes</td>
+											<td class='text-left cptype2'>RMS</td>
+										</tr>
+										<tr>
+											<td class='text-left'> 4 </td>
+											<td class='text-left cp0'>Grill Temperature.</td>
+											<td class='text-right status1'>Yes</td>
+											<td class='text-left cptype2'>RMS</td>
+										</tr>
+										<tr>
+											<td class='text-left'> 5 </td>
+											<td class='text-left cp0'>Water Drainage.</td>
+											<td class='text-right status1'>Yes</td>
+											<td class='text-left cptype2'>RMS</td>
+										</tr>
+										<tr>
+											<td class='text-left'> 6 </td>
+											<td class='text-left cp0'>Unit Condition.</td>
+											<td class='text-right status1'>Yes</td>
+											<td class='text-left cptype2'>RMS</td>
+										</tr>
+										<tr class='sumtotalhide'>
+											<td class='text-left'>Sub Total</td>
+											<td class='text-right cp0'> </td>
+											<td class='text-right status1'> </td>
+											<td class='text-right cptype2'> </td>
+										</tr>
+									</table>
+								</td>
+								<td style="border:none">
+									<p>I certify that the repair has been completed to my satisfaction.</p>
+									<p><img src="https://opterix.in/coolx/photos/task/2024/Sep/signature-18487.png"
+											width="auto" height="70px">
+									<p>Signed By - Ravi Nistala ( 2424242 )</p>
+								</td>
+							</tr>
+						</table>
+						<table style="text-align:center;margin:top-10px;">
+							<tr>
+								<td style="text-align:center;vertical-align:top;border-right:none;">
+									<p style="margin:unset;color:grey">Before Service</p>
+									<img
+										src="https://opterix.in/coolx/photos/task/2024/Sep/h-18483.png"
+										alt="Before Service Photo" width="90%">
+								</td>
+								<td style="text-align:center;vertical-align:top;border-right:none;">
+									<p style="margin:unset;color:grey">After Service</p>
+									<img
+										src="https://opterix.in/coolx/photos/task/2024/Sep/clean ac-18485.png"
+										alt="After service photo" width="90%">
+								</td>
+							</tr>
+						</table>
+
+						<p style="font-weight: 700; text-align: center;"> Avail our best offers for comprehensive AMC
+						</p>
+
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td style="border: none;">&nbsp;</td>
+				</tr>
+			</tfoot>
+		</table>
+		<footer>
+		</footer>
+	</body>
+
+	</html>

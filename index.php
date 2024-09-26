@@ -7,7 +7,7 @@ use App\Services\DomPdfService;
 use App\Services\HtmlProcessor;
 
 
-$html = file_get_contents('./original.html', true);
+$html = file_get_contents('./original2.html', true);
 $htmlprocesor = new HtmlProcessor($html);
 $htmlprocesor->removeScriptTags();
 $css = '
